@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}S'inscrire{% endblock %}
+
+{% block body %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+        {# Navigation - BEGIN #}
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color: #e14b4b;">
+            <div class="container"><a class="navbar-brand" href="{{ path('homepage') }}"><img src="assets/img/site/logo_flat.png" style="width: 100px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_categories }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">T-Shirt</a><a class="dropdown-item" href="#">Sweat</a><a class="dropdown-item" href="#">Pantalon</a></div>
+                        </li>
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_la_marque }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">{{ nav_qsn }}</a><a class="dropdown-item" href="#">{{ nav_no }}</a></div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="#">Admin</a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="#"><i class="fas fa-cart-arrow-down" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="#"><i class="fas fa-shopping-bag" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('account') }}"><i class="fa fa-user" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="logout"><i class="fas fa-power-off" style="font-size: 22px;"></i></a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {# Navigation - END #}
+    {% elseif is_granted('ROLE_USER') %}
+        {# Navigation - BEGIN #}
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color: #e14b4b;">
+            <div class="container"><a class="navbar-brand" href="{{ path('homepage') }}"><img src="assets/img/site/logo_flat.png" style="width: 100px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_categories }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">T-Shirt</a><a class="dropdown-item" href="#">Sweat</a><a class="dropdown-item" href="#">Pantalon</a></div>
+                        </li>
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_la_marque }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">{{ nav_qsn }}</a><a class="dropdown-item" href="#">{{ nav_no }}</a></div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="#"><i class="fas fa-cart-arrow-down" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="#"><i class="fas fa-shopping-bag" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('account') }}"><i class="fa fa-user" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="logout"><i class="fas fa-power-off" style="font-size: 22px;"></i></a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {# Navigation - END #}
+    {% else %}
+        {# Navigation - BEGIN #}
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color: #e14b4b;">
+            <div class="container"><a class="navbar-brand" href="{{ path('homepage') }}"><img src="assets/img/site/logo_flat.png" style="width: 100px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_categories }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">T-Shirt</a><a class="dropdown-item" href="#">Sweat</a><a class="dropdown-item" href="#">Pantalon</a></div>
+                        </li>
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_la_marque }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">{{ nav_qsn }}</a><a class="dropdown-item" href="#">{{ nav_no }}</a></div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="#"><i class="fas fa-cart-arrow-down" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="#"><i class="fas fa-shopping-bag" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('account') }}"><i class="fas fa-user-plus" style="font-size: 22px;"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {# Navigation - END #}
+    {% endif %}
+
+
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <div style="text-align: center">
+        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center; margin-top: 35px">S'inscrire</h1>
+        {{ form_start(registrationForm) }}
+            <div>
+                {{ form_label(registrationForm.first_name) }}
+                <br>
+                {{ form_widget(registrationForm.first_name) }}
+            </div><br>
+            <div>
+                {{ form_label(registrationForm.last_name) }}
+                <br>
+                {{ form_widget(registrationForm.last_name) }}
+            </div><br>
+            <div>
+                {{ form_label(registrationForm.email) }}
+                <br>
+                {{ form_widget(registrationForm.email) }}
+            </div><br>
+            <div>
+                {{ form_label(registrationForm.mail_confirmation) }}
+                <br>
+                {{ form_widget(registrationForm.mail_confirmation) }}
+            </div><br>
+            <div>
+                {{ form_label(registrationForm.adress) }}
+                <br>
+                {{ form_widget(registrationForm.adress) }}
+            </div><br>
+            <div>
+                {{ form_label(registrationForm.city) }}
+                <br>
+                {{ form_widget(registrationForm.city) }}
+            </div><br>
+            <div>
+                {{ form_label(registrationForm.cp) }}
+                <br>
+                {{ form_widget(registrationForm.cp) }}
+            </div><br>
+            <div>
+                {{ form_label(registrationForm.country) }}
+                <br>
+                {{ form_widget(registrationForm.country) }}
+            </div><br>
+            <div>
+                {{ form_label(registrationForm.plainPassword) }}
+                <br>
+                {{ form_widget(registrationForm.plainPassword) }}
+                <br><br>
+                {{ form_label(registrationForm.pass_confirmation) }}
+                <br>
+                {{ form_widget(registrationForm.pass_confirmation) }}
+                <br><br>
+                {{ form_widget(registrationForm.agreeTerms) }}
+                {{ form_label(registrationForm.agreeTerms) }}
+            </div><br>
+            <button class="btn btn-lg btn-primary" type="submit" style="background-color: #e14b4b;border-width: 0px">S'inscrire</button>
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

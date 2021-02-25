@@ -1,0 +1,22 @@
+{# Navigation - BEGIN #}
+<nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color: #e14b4b;">
+    <div class="container"><a class="navbar-brand" href="{{ path('homepage') }}"><img src="assets/img/site/logo_flat.png" style="width: 100px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav mr-auto">
+                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_categories }}</a>
+                    <div class="dropdown-menu"><a class="dropdown-item" href="#">T-Shirt</a><a class="dropdown-item" href="#">Sweat</a><a class="dropdown-item" href="#">Pantalon</a></div>
+                </li>
+                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_la_marque }}</a>
+                    <div class="dropdown-menu"><a class="dropdown-item" href="#">{{ nav_qsn }}</a><a class="dropdown-item" href="#">{{ nav_no }}</a></div>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="#">{{ nav_contact }}</a></li>
+            </ul>
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#">{{ nav_liste_envie }}</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">{{ nav_panier }}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('account') }}">{{ nav_mon_compte }}</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{# Navigation - END #}

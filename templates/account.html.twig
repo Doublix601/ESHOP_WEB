@@ -1,0 +1,149 @@
+{% extends 'base.html.twig' %}
+
+{% block head %}
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        {% block title %}DRESS UP.CO - Mon compte{% endblock %}
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+        <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+        <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    </head>
+{% endblock %}
+
+
+{% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
+        {# Navigation - BEGIN #}
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color: #e14b4b;">
+            <div class="container"><a class="navbar-brand" href="{{ path('homepage') }}"><img src="assets/img/site/logo_flat.png" style="width: 100px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_categories }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">T-Shirt</a><a class="dropdown-item" href="#">Sweat</a><a class="dropdown-item" href="#">Pantalon</a></div>
+                        </li>
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_la_marque }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">{{ nav_qsn }}</a><a class="dropdown-item" href="#">{{ nav_no }}</a></div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="#">Admin</a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="#"><i class="fas fa-cart-arrow-down" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="#"><i class="fas fa-shopping-bag" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('account') }}"><i class="fa fa-user" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="logout"><i class="fas fa-power-off" style="font-size: 22px;"></i></a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {# Navigation - END #}
+    {% elseif is_granted('ROLE_USER') %}
+        {# Navigation - BEGIN #}
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color: #e14b4b;">
+            <div class="container"><a class="navbar-brand" href="{{ path('homepage') }}"><img src="assets/img/site/logo_flat.png" style="width: 100px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_categories }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">T-Shirt</a><a class="dropdown-item" href="#">Sweat</a><a class="dropdown-item" href="#">Pantalon</a></div>
+                        </li>
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_la_marque }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">{{ nav_qsn }}</a><a class="dropdown-item" href="#">{{ nav_no }}</a></div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="#"><i class="fas fa-cart-arrow-down" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="#"><i class="fas fa-shopping-bag" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('account') }}"><i class="fa fa-user" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="logout"><i class="fas fa-power-off" style="font-size: 22px;"></i></a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {# Navigation - END #}
+    {% else %}
+        {# Mettre erreur 403 #}
+    {% endif %}
+
+    {# Body - BEGIN #}
+    <body id="page-top">
+    <div id="wrapper">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content" style="margin-top: 50px;">
+                <div class="container-fluid">
+                    <h3 class="text-center text-dark mb-4">Mon compte</h3>
+                    <div class="row mb-3" style="margin-right: 10%;margin-left: 10%;">
+                        <div class="col">
+                            <div class="card shadow">
+                                <div class="card-header py-3">
+                                    <p class="text-primary m-0 font-weight-bold">Voir et changer mes paramètres</p>
+                                </div>
+                                <div class="card-body">
+                                    <form>
+                                        <div style="border-width: 1px;border-style: dashed;">
+                                            <h3 style="padding-top: 15px;padding-left: 5px;">Identifiants</h3>
+                                            <div class="form-row" style="margin-bottom: 50px;margin-left: 5px;margin-right: 5px;border-width: 1px;border-style: none;">
+                                                <div class="col" style="border-style: none;">
+                                                    <div class="form-group"><label for="email"><strong>Adresse mail</strong></label><input class="form-control" type="email" placeholder="user@example.com" name="email"></div>
+                                                </div>
+                                                <div class="col" style="border-style: none;">
+                                                    <div class="form-group"><label for="email"><strong>Changer mon mot de passe</strong></label><input class="form-control" type="email" name="Change password" placeholder="********"><label for="email" style="margin-top: 10px;"><strong>Confirmez votre nouveau mot de passe</strong></label><input class="form-control" type="email" name="Change password" placeholder="********"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 50px;"></div>
+                                        <div style="border-width: 1px;border-style: dashed;">
+                                            <h3 style="padding-left: 5px;">Mes informations</h3>
+                                            <div class="form-row" style="border-width: 1px;border-style: none;padding-right: 5px;padding-left: 5px;margin-left: 5px;margin-right: 5px;">
+                                                <div class="col" style="border-style: none;">
+                                                    <div class="form-group"><label for="first_name"><strong>Prénom</strong></label><input class="form-control" type="text" placeholder="Arnaud" name="first_name"></div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group"><label for="last_name"><strong>Nom</strong><br></label><input class="form-control" type="text" placeholder="THERET" name="last_name"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="margin-bottom: 50px;"></div>
+                                        <div style="border-width: 1px;border-style: dashed;">
+                                            <h3 style="padding-left: 5px;">Mon domicile</h3>
+                                            <div class="form-row" style="margin-right: 0px;margin-left: 0px;padding-left: 5px;padding-right: 5px;">
+                                                <div class="col">
+                                                    <div class="form-group" style="border-width: 1px;border-style: none;"><label for="address"><strong>Address</strong></label><input class="form-control" type="text" placeholder="Sunset Blvd, 38" name="address"></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row" style="margin-top: 30px;border-width: 1px;border-style: none;margin-left: 0px;margin-right: 0px;padding-left: 5px;padding-right: 5px;">
+                                                <div class="col">
+                                                    <div class="form-group"><label for="country"><strong>Code postal</strong></label><input class="form-control" type="text" placeholder="60200" name="country"></div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group"><label for="city"><strong>Ville</strong></label><input class="form-control" type="text" placeholder="Compiègne" name="city"></div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group"><label for="country"><strong>Pays</strong><br></label><input class="form-control" type="text" placeholder="France" name="country"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center" style="margin-bottom: 100px;margin-top: 50px;"><button class="btn btn-primary" type="submit">Mettre à jour</button></div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/chart.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="assets/js/theme.js"></script>
+    </body>
+
+    </html>
+    {# Body - END #}
+{% endblock %}
