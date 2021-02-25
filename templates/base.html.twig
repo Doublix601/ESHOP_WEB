@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Eshop - Accueil{% endblock %}</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
+        <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+        <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+        <link rel="stylesheet" href="assets/css/sticky-dark-top-nav-with-dropdown.css">
+        <link rel="stylesheet" href="assets/css/styles.css">
+        {% block stylesheets %}{% endblock %}
+    </head>
+        <body>{% block body %}
+
+            {% if is_granted('ROLE_ADMIN') %}
+                {# Navigation - BEGIN #}
+                <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color: #e14b4b;">
+                    <div class="container"><a class="navbar-brand" href="{{ path('homepage') }}"><img src="assets/img/site/logo_flat.png" style="width: 100px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                        <div class="collapse navbar-collapse" id="navcol-1">
+                            <ul class="nav navbar-nav mr-auto">
+                                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_categories }}</a>
+                                    <div class="dropdown-menu"><a class="dropdown-item" href="#">T-Shirt</a><a class="dropdown-item" href="#">Sweat</a><a class="dropdown-item" href="#">Pantalon</a></div>
+                                </li>
+                                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_la_marque }}</a>
+                                    <div class="dropdown-menu"><a class="dropdown-item" href="#">{{ nav_qsn }}</a><a class="dropdown-item" href="#">{{ nav_no }}</a></div>
+                                </li>
+                            </ul>
+                            <ul class="nav navbar-nav ml-auto">
+                                <li class="nav-item"><a class="nav-link" href="#">Admin</a></li>
+                                <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="#"><i class="fas fa-cart-arrow-down" style="font-size: 22px;"></i></a></li>
+                                <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="#"><i class="fas fa-shopping-bag" style="font-size: 22px;"></i></a></li>
+                                <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('account') }}"><i class="fa fa-user" style="font-size: 22px;"></i></a></li>
+                                <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="logout"><i class="fas fa-power-off" style="font-size: 22px;"></i></a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                {# Navigation - END #}
+            {% elseif is_granted('ROLE_USER') %}
+                {# Navigation - BEGIN #}
+                <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color: #e14b4b;">
+                    <div class="container"><a class="navbar-brand" href="{{ path('homepage') }}"><img src="assets/img/site/logo_flat.png" style="width: 100px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                        <div class="collapse navbar-collapse" id="navcol-1">
+                            <ul class="nav navbar-nav mr-auto">
+                                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_categories }}</a>
+                                    <div class="dropdown-menu"><a class="dropdown-item" href="#">T-Shirt</a><a class="dropdown-item" href="#">Sweat</a><a class="dropdown-item" href="#">Pantalon</a></div>
+                                </li>
+                                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_la_marque }}</a>
+                                    <div class="dropdown-menu"><a class="dropdown-item" href="#">{{ nav_qsn }}</a><a class="dropdown-item" href="#">{{ nav_no }}</a></div>
+                                </li>
+                            </ul>
+                            <ul class="nav navbar-nav ml-auto">
+                                <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="#"><i class="fas fa-cart-arrow-down" style="font-size: 22px;"></i></a></li>
+                                <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="#"><i class="fas fa-shopping-bag" style="font-size: 22px;"></i></a></li>
+                                <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('account') }}"><i class="fa fa-user" style="font-size: 22px;"></i></a></li>
+                                <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="logout"><i class="fas fa-power-off" style="font-size: 22px;"></i></a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                {# Navigation - END #}
+            {% else %}
+                {# Navigation - BEGIN #}
+                <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color: #e14b4b;">
+                    <div class="container"><a class="navbar-brand" href="{{ path('homepage') }}"><img src="assets/img/site/logo_flat.png" style="width: 100px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                        <div class="collapse navbar-collapse" id="navcol-1">
+                            <ul class="nav navbar-nav mr-auto">
+                                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_categories }}</a>
+                                    <div class="dropdown-menu"><a class="dropdown-item" href="#">T-Shirt</a><a class="dropdown-item" href="#">Sweat</a><a class="dropdown-item" href="#">Pantalon</a></div>
+                                </li>
+                                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_la_marque }}</a>
+                                    <div class="dropdown-menu"><a class="dropdown-item" href="#">{{ nav_qsn }}</a><a class="dropdown-item" href="#">{{ nav_no }}</a></div>
+                                </li>
+                            </ul>
+                            <ul class="nav navbar-nav ml-auto">
+                                <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="#"><i class="fas fa-cart-arrow-down" style="font-size: 22px;"></i></a></li>
+                                <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="#"><i class="fas fa-shopping-bag" style="font-size: 22px;"></i></a></li>
+                                <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('account') }}"><i class="fas fa-user-plus" style="font-size: 22px;"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                {# Navigation - END #}
+            {% endif %}
+
+            {# Body - BEGIN #}
+
+            {# Meilleures ventes - BEGIN #}
+            <h2 style="text-align: center;margin-top: 35px">{{ meilleures_ventes }}</h2>
+            <div class="article-list">
+                <div class="container">
+                    <div class="row articles" style="margin-top: 25px">
+                        {# {% for produit in produits|sort((a, b) => a.NbVentes < b.NbVentes) %}  #}
+                        {% for produit in produits|sort((a, b) => a.NbVentes < b.NbVentes)|slice(0, 3) %}
+                        <div class="col-sm-6 col-md-4 item"><a href="product?id={{ produit.id }}"><div style="text-align: center">
+                                    {% if produit.img is empty %}
+                                        <img class="img-fluid" src="{{ asset('assets/img/site/404_products.png') }}" width="200">
+                                    {% else %}
+                                        <img class="img-fluid" src="{{ produit.img }}" width="200">
+                                    {% endif %}
+                                </div>
+                                <h3 class="name" >{{ produit.label }} - {{ produit.brand }}</h3>
+                            </a>
+                            <p class="description">{{ produit.descriptionCourte }}</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {# Meilleures ventes - END #}
+
+                {# Derniers produits - BEGIN #}
+                <h2 style="text-align: center;margin-top: 35px">{{ nouveaux_articles }}</h2>
+                <div class="article-list">
+                    <div class="container">
+                        <div class="row articles" style="margin-top: 25px">
+                            {% for produit in produits|sort((a, b) => a.Id < b.Id) %}
+                                <div class="col-sm-6 col-md-4 item">
+                                    <a href="#"><a href="product?id={{ produit.id }}"><div style="text-align: center">
+                                            {% if produit.img is empty %}
+                                                <img class="img-fluid" src="{{ asset('assets/img/site/404_products.png') }}" width="200">
+                                            {% else %}
+                                                <img class="img-fluid" src="{{ produit.img }}" width="200">
+                                            {% endif %}
+                                            </div>
+                                    <h3 class="name">{{ produit.label }} - {{ produit.brand }}</h3>
+                                    </a>
+                                    <p class="description">{{ produit.descriptionCourte }}</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a>
+                                    </a></div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {# Body - END #}
+
+
+        {% endblock %}</body>
+        {% block javascripts %}{% endblock %}
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</html>
