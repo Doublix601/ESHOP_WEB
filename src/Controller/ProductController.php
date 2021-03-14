@@ -7,42 +7,30 @@ use App\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class ProductController extends AbstractController
 {
     /**
-     * @Route("/product")
+     * @Route("/product/{id}", name="product_byid")
      */
 
-    public function home()
+    public function home(HttpClientInterface $client, $id)
     {
         //Test langage
         $langage = "FR";
 
-        //Produits
-        $produit_id = $_GET["id"];
-        $product = $this->getDoctrine()->getRepository(Product::class)->find($produit_id);
 
-        $img = $product->getImg();
-        if(empty($img)){
-            $img = "assets/img/site/404_products.png";
-        }
-
-        $marque = $product->getBrand();
-        $stock = $product->getStock();;
+        $getapi_products = $client->request('GET', 'http://localhost/ESHOP_API/public/index.php/api/product/get/id/'.$id);
+        $produits = $getapi_products->toArray();
 
         if ($langage == "FR") {
             $bouton_panier = "Ajouter au panier";
-            $bouton_liste_envie = "+ liste d'envie";
 
-            $label = $product->getLabel();
-            $montant_prix = $product->getTtcPrice();
-            $devise = "€";
-            $montant_prix = $montant_prix . $devise;
-            $stock = $stock . " en stock";
+            //$stock = $stock . " en stock";
+            $stock = " en stock";
 
             $description_titre = "Description du produit";
-            $description_texte = $product->getDescription();
 
             //nav
             $nav_categorie = "Catégories";
@@ -56,15 +44,14 @@ class ProductController extends AbstractController
         }
 
         if ($langage == "EN") {
-            $label = $product->getLabel();
-            $montant_prix = $product->getTtcPrice();
+            //$label = $product->getLabel();
+            //$montant_prix = $product->getTtcPrice();
             $devise = "€";
-            $montant_prix = $montant_prix . $devise;
+            //$montant_prix = $montant_prix . $devise;
             $stock = $stock . " in stock";
             $bouton_panier = "Add to cart";
-            $bouton_liste_envie = "+ wishlist";
             $description_titre = "Product description";
-            $description_texte = $product->getDescription();
+            //$description_texte = $product->getDescription();
 
             //nav
             $nav_categorie = "Categories";
@@ -80,15 +67,16 @@ class ProductController extends AbstractController
 
 
         return $this->render('product.html.twig', [
-            "img" => $img,
-            "label" => $label,
-            "marque" => $marque,
-            "montant_prix" => $montant_prix,
+            "produit" => $produits,
+
+            //"img" => $img,
+            //"label" => $label,
+            //"marque" => $marque,
+            //"montant_prix" => $montant_prix,
             "stock" => $stock,
             "bouton_panier" => $bouton_panier,
-            "bouton_liste_envie" => $bouton_liste_envie,
             "description_titre" => $description_titre,
-            "description_texte" => $description_texte,
+            //"description_texte" => $description_texte,
             //nav
             "nav_categories" => $nav_categorie,
             "nav_la_marque" => $nav_la_marque,

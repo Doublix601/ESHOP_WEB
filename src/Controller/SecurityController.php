@@ -14,10 +14,6 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-
-        //site_setup
-        $site_link = "https://192.168.1.122:8000";
-
         //Test langage
         $langage = "FR";
 
@@ -44,9 +40,9 @@ class SecurityController extends AbstractController
             $nav_mon_compte = "My account";
         }
 
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
+         if ($this->getUser()) {
+             return $this->redirectToRoute('target_path');
+         }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -56,9 +52,6 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
-
-            //Setup
-            "site_link" => $site_link,
 
             //nav
             "nav_categories" => $nav_categorie,

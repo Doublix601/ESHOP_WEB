@@ -67,7 +67,7 @@ class AppFixtures extends Fixture
             $product->setHtPrice(mt_rand(10, 100));
             $product->setDescription('Ceci est la description du produit n°'.$i.'. Plus tard il y aura une description réelle du produit vendu dans le shop.');
             $product->setBrand('Marque de test');
-            $product->setImg("assets/img/site/404_products.png");
+            $product->setImg("/assets/img/site/404_products.png");
             $product->setTva('20');
             $product->setCategory($getCategory);
             $product->setDeliveryOption('Standard');

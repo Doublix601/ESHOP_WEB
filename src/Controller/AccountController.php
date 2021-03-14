@@ -5,16 +5,33 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class AccountController extends AbstractController
 {
     /**
+     * @var Security
+     */
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
+    /**
      * @Route("/account", name="account")
      */
-    public function index(): Response
+    public function index(HttpClientInterface $client): Response
     {
-        //site_setup
-        $site_link = "https://192.168.1.122:8000";
+        //Get user data
+        //$userdata = $this->get('security.token_storage')->getToken()->getUser();
+        //$userdata->getId();
+        //dd($userdata);
+
+        //$getapi_user = $client->request('GET', 'http://localhost/ESHOP_API/public/index.php/api/user/');
+        //$userdata = $getapi_user->toArray();
 
         //Test langage
         $langage = "FR";
@@ -44,10 +61,11 @@ class AccountController extends AbstractController
 
         //Vérification si utilisateur connecté
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $user = $this->getUser();
+
+        //a verifier
+        //$user = $this->getUser();
+
         return $this->render('account.html.twig', [
-            //Setup
-            "site_link" => $site_link,
 
             //nav
             "nav_categories" => $nav_categorie,
@@ -58,6 +76,9 @@ class AccountController extends AbstractController
             "nav_liste_envie" => $nav_liste_envie,
             "nav_panier" => $nav_panier,
             "nav_mon_compte" => $nav_mon_compte,
+
+            //User Data
+            "userdata" => $userdata,
             ]);
 
 
@@ -86,24 +107,5 @@ class AccountController extends AbstractController
             $nav_panier = "My cart";
             $nav_mon_compte = "My account";
         }
-
-
-
-        return $this->render('account.html.twig', [
-            'controller_name' => 'AccountController',
-
-            //Setup
-            "site_link" => $site_link,
-
-            //nav
-            "nav_categories" => $nav_categorie,
-            "nav_la_marque" => $nav_la_marque,
-            "nav_qsn" => $nav_qsn,
-            "nav_no" => $nav_no,
-            "nav_contact" => $nav_contact,
-            "nav_liste_envie" => $nav_liste_envie,
-            "nav_panier" => $nav_panier,
-            "nav_mon_compte" => $nav_mon_compte,
-        ]);
     }
 }
