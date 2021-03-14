@@ -113,7 +113,6 @@
             <div class="article-list">
                 <div class="container">
                     <div class="row articles" style="margin-top: 25px">
-                        {# {% for produit in produits|sort((a, b) => a.NbVentes < b.NbVentes) %}  #}
                         {% for produit in produits|sort((a, b) => a.nb_ventes < b.nb_ventes)|slice(0, 3) %}
                         <div class="col-sm-6 col-md-4 item"><a href="product/{{ produit.id }}"><div style="text-align: center">
                                     {% if produit.img is empty %}

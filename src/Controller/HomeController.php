@@ -32,22 +32,7 @@ class HomeController extends AbstractController
             $nav_panier = "Mon panier";
             $nav_mon_compte = "Mon compte";
         }
-        if ($langage == "EN") {
-            $meilleures_ventes = "Best sells"; //Titre articles mis en avant EN
-            $nouveaux_articles = "Lastest products"; //Titre articles mis en avant EN
-            //nav
-            $nav_categorie = "Categories";
-            $nav_la_marque = "The Brand";
-                $nav_qsn = "Who are we ?";
-                $nav_no = "Our origins";
-            $nav_contact = "Contact";
-            $nav_liste_envie = "My wishlist";
-            $nav_panier = "My cart";
-            $nav_mon_compte = "My account";
-        }
 
-        //Produits
-        // $produits = $this->getDoctrine()->getRepository(Product::class)->findAll();
 
         $getapi_products = $client->request('GET', 'http://localhost/ESHOP_API/public/index.php/api/products/get');
         $produits = $getapi_products->toArray();
