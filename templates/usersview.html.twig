@@ -1,0 +1,141 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DRESS UP.CO - Utilisateurs{% endblock %}
+
+{% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
+        {# Navigation - BEGIN #}
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color: #e14b4b;">
+            <div class="container"><a class="navbar-brand" href="{{ path('homepage') }}"><img src="/assets/img/site/logo_flat.png" style="width: 100px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_categories }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">T-Shirt</a><a class="dropdown-item" href="#">Sweat</a><a class="dropdown-item" href="#">Pantalon</a></div>
+                        </li>
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_la_marque }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">{{ nav_qsn }}</a><a class="dropdown-item" href="#">{{ nav_no }}</a></div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="#">Admin</a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="#"><i class="fas fa-shopping-bag" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('account') }}"><i class="fa fa-user" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="logout"><i class="fas fa-power-off" style="font-size: 22px;"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {# Navigation - END #}
+    {% elseif is_granted('ROLE_USER') %}
+        {# Navigation - BEGIN #}
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color: #e14b4b;">
+            <div class="container"><a class="navbar-brand" href="{{ path('homepage') }}"><img src="/assets/img/site/logo_flat.png" style="width: 100px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_categories }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">T-Shirt</a><a class="dropdown-item" href="#">Sweat</a><a class="dropdown-item" href="#">Pantalon</a></div>
+                        </li>
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_la_marque }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">{{ nav_qsn }}</a><a class="dropdown-item" href="#">{{ nav_no }}</a></div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="#"><i class="fas fa-shopping-bag" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('account') }}"><i class="fa fa-user" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="logout"><i class="fas fa-power-off" style="font-size: 22px;"></i></a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {# Navigation - END #}
+    {% else %}
+        {# Navigation - BEGIN #}
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color: #e14b4b;">
+            <div class="container"><a class="navbar-brand" href="{{ path('homepage') }}"><img src="/assets/img/site/logo_flat.png" style="width: 100px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_categories }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">T-Shirt</a><a class="dropdown-item" href="#">Sweat</a><a class="dropdown-item" href="#">Pantalon</a></div>
+                        </li>
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_la_marque }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">{{ nav_qsn }}</a><a class="dropdown-item" href="#">{{ nav_no }}</a></div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="#"><i class="fas fa-shopping-bag" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('account') }}"><i class="fas fa-user-plus" style="font-size: 22px;"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {# Navigation - END #}
+    {% endif %}
+
+    <br>Debug navbar<br>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color: #e14b4b;">
+        <div class="container"><a class="navbar-brand" href="{{ path('homepage') }}"><img src="/assets/img/site/logo_flat.png" style="width: 100px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_categories }}</a>
+                        <div class="dropdown-menu"><a class="dropdown-item" href="#">T-Shirt</a><a class="dropdown-item" href="#">Sweat</a><a class="dropdown-item" href="#">Pantalon</a></div>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ path('usersview') }}">Gestion des utilisateurs</a></li>
+                    <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="#"><i class="fas fa-shopping-bag" style="font-size: 22px;"></i></a></li>
+                    <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('account') }}"><i class="fa fa-user" style="font-size: 22px;"></i></a></li>
+                    <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="logout"><i class="fas fa-power-off" style="font-size: 22px;"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {# Body - BEGIN #}
+    <div id="wrapper" style="margin-top: 50px">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <div class="container-fluid">
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <h4 style="color: #e14b4b;">Utilisateurs</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                <table class="table my-0" id="users">
+                                    <thead>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>E-mail</th>
+                                        <th>Rôle</th>
+                                        <th>Supprimer l'utilisateur</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+
+                                    {% for user in users|sort((a, b) => a.id < b.id) %}
+
+                                        <tr id="{{ user.id }}">
+                                            <td>{{ user.first_name}} {{ user.last_name}}</td>
+                                            <td>{{ user.email}}</td>
+                                            <td>{{ user.roles.0}}</td>
+                                            <td><a class="btn btn-primary" role="button" style="background: #e14b4b;border-width: 0;" href="http://localhost/ESHOP_API/public/api/user/delete/id/{{ user.id }}">Supprimer</a></td>
+                                        </tr>
+
+                                    {% endfor %}
+
+                                    </tbody>
+                                    <tfoot>
+                                    <tr></tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {# Body - END #}
+{% endblock %}

@@ -1,0 +1,161 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DRESS UP.CO - Panier{% endblock %}
+
+{% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
+        {# Navigation - BEGIN #}
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color: #e14b4b;">
+            <div class="container"><a class="navbar-brand" href="{{ path('homepage') }}"><img src="/assets/img/site/logo_flat.png" style="width: 100px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_categories }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">T-Shirt</a><a class="dropdown-item" href="#">Sweat</a><a class="dropdown-item" href="#">Pantalon</a></div>
+                        </li>
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_la_marque }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">{{ nav_qsn }}</a><a class="dropdown-item" href="#">{{ nav_no }}</a></div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="#">Admin</a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('cart') }}"><i class="fas fa-shopping-bag" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('account') }}"><i class="fa fa-user" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="logout"><i class="fas fa-power-off" style="font-size: 22px;"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {# Navigation - END #}
+    {% elseif is_granted('ROLE_USER') %}
+        {# Navigation - BEGIN #}
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color: #e14b4b;">
+            <div class="container"><a class="navbar-brand" href="{{ path('homepage') }}"><img src="/assets/img/site/logo_flat.png" style="width: 100px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_categories }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">T-Shirt</a><a class="dropdown-item" href="#">Sweat</a><a class="dropdown-item" href="#">Pantalon</a></div>
+                        </li>
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_la_marque }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">{{ nav_qsn }}</a><a class="dropdown-item" href="#">{{ nav_no }}</a></div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('cart') }}"><i class="fas fa-shopping-bag" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('account') }}"><i class="fa fa-user" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="logout"><i class="fas fa-power-off" style="font-size: 22px;"></i></a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {# Navigation - END #}
+    {% else %}
+        {# Navigation - BEGIN #}
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color: #e14b4b;">
+            <div class="container"><a class="navbar-brand" href="{{ path('homepage') }}"><img src="/assets/img/site/logo_flat.png" style="width: 100px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_categories }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">T-Shirt</a><a class="dropdown-item" href="#">Sweat</a><a class="dropdown-item" href="#">Pantalon</a></div>
+                        </li>
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_la_marque }}</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">{{ nav_qsn }}</a><a class="dropdown-item" href="#">{{ nav_no }}</a></div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('cart') }}"><i class="fas fa-shopping-bag" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('account') }}"><i class="fas fa-user-plus" style="font-size: 22px;"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {# Navigation - END #}
+    {% endif %}
+
+    <br>Debug navbar<br>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color: #e14b4b;">
+        <div class="container"><a class="navbar-brand" href="{{ path('homepage') }}"><img src="/assets/img/site/logo_flat.png" style="width: 100px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{ nav_categories }}</a>
+                        <div class="dropdown-menu"><a class="dropdown-item" href="#">T-Shirt</a><a class="dropdown-item" href="#">Sweat</a><a class="dropdown-item" href="#">Pantalon</a></div>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ path('usersview') }}">Gestion des utilisateurs</a></li>
+                    <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('cart') }}"><i class="fas fa-shopping-bag" style="font-size: 22px;"></i></a></li>
+                    <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('account') }}"><i class="fa fa-user" style="font-size: 22px;"></i></a></li>
+                    <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="logout"><i class="fas fa-power-off" style="font-size: 22px;"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {# Body - BEGIN #}
+    <div id="wrapper" style="margin-top: 50px">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <div class="container-fluid">
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <h4 style="color: #e14b4b;">Panier</h4>
+                        </div>
+                        <div class="card-body">
+
+                            {% if items | length > 0 %}
+                                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                    <table class="table my-0" id="users">
+                                        <thead>
+                                        <tr>
+                                            <th>Produit</th>
+                                            <th>Quantité</th>
+                                            <th>Montant</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        {% for item in items %}
+
+                                            <tr id="{{ item.product.id }}">
+                                                <td>{{ item.product.label}} - {{ item.product.brand}}</td>
+
+
+
+                                                <td>
+                                                    <input type="number" value="{{ item.quantity}}" min="10" max="100">
+                                                </td>
+
+
+                                                <td>{{ item.product.ttc_price * item.quantity}}€</td>
+                                                <td>
+                                                    <a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="btn btn-primary" style="background: #e14b4b;border-width: 0;"><i class="fas fa-trash"> </i></a>
+                                                </td>
+                                            </tr>
+
+                                        {% endfor %}
+
+
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <td colspan="3" class="text-right">Total :</td>
+                                            <td>{{ total }}€</td>
+                                            <td></td>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            {% else %}
+                                <p>Votre panier est vide</p>
+                            {% endif %}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {# Body - END #}
+{% endblock %}
