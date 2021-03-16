@@ -40,9 +40,9 @@ class SecurityController extends AbstractController
             $nav_mon_compte = "My account";
         }
 
-         if ($this->getUser()) {
-             return $this->redirectToRoute('target_path');
-         }
+         //if ($this->getUser()) {
+         //    return $this->redirectToRoute('target_path');
+         //}
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();

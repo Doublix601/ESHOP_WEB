@@ -47,17 +47,6 @@ class AccountController extends AbstractController
             $nav_panier = "Mon panier";
             $nav_mon_compte = "Mon compte";
         }
-        if ($langage == "EN") {
-            //nav
-            $nav_categorie = "Categories";
-            $nav_la_marque = "The Brand";
-            $nav_qsn = "Who are we ?";
-            $nav_no = "Our origins";
-            $nav_contact = "Contact";
-            $nav_liste_envie = "My wishlist";
-            $nav_panier = "My cart";
-            $nav_mon_compte = "My account";
-        }
 
         //Vérification si utilisateur connecté
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -78,34 +67,7 @@ class AccountController extends AbstractController
             "nav_mon_compte" => $nav_mon_compte,
 
             //User Data
-            "userdata" => $userdata,
+            //"userdata" => $userdata,
             ]);
-
-
-        //Test langage
-        $langage = "FR";
-
-        if ($langage == "FR") {
-            //nav
-            $nav_categorie = "Catégories";
-            $nav_la_marque = "La marque";
-            $nav_qsn = "Qui sommes-nous ?";
-            $nav_no = "Nos origines";
-            $nav_contact = "Contact";
-            $nav_liste_envie = "Ma liste d'envie";
-            $nav_panier = "Mon panier";
-            $nav_mon_compte = "Mon compte";
-        }
-        if ($langage == "EN") {
-            //nav
-            $nav_categorie = "Categories";
-            $nav_la_marque = "The Brand";
-            $nav_qsn = "Who are we ?";
-            $nav_no = "Our origins";
-            $nav_contact = "Contact";
-            $nav_liste_envie = "My wishlist";
-            $nav_panier = "My cart";
-            $nav_mon_compte = "My account";
-        }
     }
 }

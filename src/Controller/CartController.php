@@ -21,9 +21,6 @@ class CartController extends AbstractController
         //Test langage
         $langage = "FR";
 
-        $getapi_categories = $client->request('GET', 'http://localhost/ESHOP_API/public/index.php/api/categories/get');
-        $categories = $getapi_categories->toArray();
-
         $getapi_products = $client->request('GET', 'http://localhost/ESHOP_API/public/index.php/api/products/get');
         $produits = $getapi_products->toArray();
 
@@ -56,10 +53,6 @@ class CartController extends AbstractController
 
         if ($langage == "FR") {
             //nav
-            $nav_categorie = "Catégories";
-            $nav_la_marque = "La marque";
-                $nav_qsn = "Qui sommes-nous ?";
-                $nav_no = "Nos origines";
             $nav_contact = "Contact";
             $nav_liste_envie = "Ma liste d'envie";
             $nav_panier = "Mon panier";
@@ -69,17 +62,12 @@ class CartController extends AbstractController
 
         return $this->render('cart.html.twig', [
             //nav
-            "nav_categories" => $nav_categorie,
-            "nav_la_marque" => $nav_la_marque,
-                "nav_qsn" => $nav_qsn,
-                "nav_no" => $nav_no,
             "nav_contact" => $nav_contact,
             "nav_liste_envie" => $nav_liste_envie,
             "nav_panier" => $nav_panier,
             "nav_mon_compte" => $nav_mon_compte,
 
             "items" => $panierWithData,
-            "categories" => $categories,
             "total" => $total
 
         ]);

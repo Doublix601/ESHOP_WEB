@@ -33,20 +33,12 @@ class HomeController extends AbstractController
             $nav_mon_compte = "Mon compte";
         }
 
-
         $getapi_products = $client->request('GET', 'http://localhost/ESHOP_API/public/index.php/api/products/get');
         $produits = $getapi_products->toArray();
-
-        $getapi_categories = $client->request('GET', 'http://localhost/ESHOP_API/public/index.php/api/categories/get');
-        $categories = $getapi_categories->toArray();
 
 
         return $this->render('base.html.twig', [
             //nav
-            "nav_categories" => $nav_categorie,
-            "nav_la_marque" => $nav_la_marque,
-                "nav_qsn" => $nav_qsn,
-                "nav_no" => $nav_no,
             "nav_contact" => $nav_contact,
             "nav_liste_envie" => $nav_liste_envie,
             "nav_panier" => $nav_panier,
@@ -54,9 +46,6 @@ class HomeController extends AbstractController
 
             //Produits
             "produits" => $produits,
-
-            //Categories
-            "categories" => $categories,
 
             //Meilleures ventes
             "meilleures_ventes" => $meilleures_ventes,
