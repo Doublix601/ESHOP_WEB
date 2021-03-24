@@ -20,8 +20,9 @@ class UsersViewController extends AbstractController
         $langage = "FR";
 
 
-        $getapi_users = $client->request('GET', 'http://localhost/ESHOP_API/public/index.php/api/users/get');
+        $getapi_users = $client->request('GET', 'http://localhost/ESHOP_API/public/index.php/api/users');
         $users = $getapi_users->toArray();
+
 
         if ($langage == "FR") {
             //nav

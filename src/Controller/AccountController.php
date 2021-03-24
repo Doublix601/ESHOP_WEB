@@ -30,8 +30,8 @@ class AccountController extends AbstractController
         //$userdata->getId();
         //dd($userdata);
 
-        //$getapi_user = $client->request('GET', 'http://localhost/ESHOP_API/public/index.php/api/user/');
-        //$userdata = $getapi_user->toArray();
+        $getapi_user = $client->request('GET', 'http://localhost/ESHOP_API/public/index.php/api/users/21');
+        $userdata = $getapi_user->toArray();
 
         //Test langage
         $langage = "FR";
@@ -49,7 +49,7 @@ class AccountController extends AbstractController
         }
 
         //Vérification si utilisateur connecté
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        //$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         //a verifier
         //$user = $this->getUser();
@@ -67,7 +67,7 @@ class AccountController extends AbstractController
             "nav_mon_compte" => $nav_mon_compte,
 
             //User Data
-            //"userdata" => $userdata,
+            "userdata" => $userdata,
             ]);
     }
 }

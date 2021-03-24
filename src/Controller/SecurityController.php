@@ -28,26 +28,50 @@ class SecurityController extends AbstractController
             $nav_panier = "Mon panier";
             $nav_mon_compte = "Mon compte";
         }
-        if ($langage == "EN") {
-            //nav
-            $nav_categorie = "Categories";
-            $nav_la_marque = "The Brand";
-            $nav_qsn = "Who are we ?";
-            $nav_no = "Our origins";
-            $nav_contact = "Contact";
-            $nav_liste_envie = "My wishlist";
-            $nav_panier = "My cart";
-            $nav_mon_compte = "My account";
-        }
 
-         //if ($this->getUser()) {
-         //    return $this->redirectToRoute('target_path');
-         //}
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
+
+
+        //todo
+        // pour le bouton success tu met (isValid && isCorrect)
+        /*
+         * debut si (isValid && isCorrect)
+
+
+         $getapi_user = $client->request('POST', 'http://localhost/ESHOP_API/public/index.php/api/users/login', [
+
+            'username' => $username,
+            'mdp' => $password
+
+        ]);
+         $userdata = $getapi_user->toArray();
+
+        si isset($userdata['apitoekn'])
+
+            redirectToRoute => account
+        sinon
+            redirectToroute => login
+
+        fin si
+
+        fin si
+
+        Recherche internety à fauire  => equivalence IS AUTHENTICATED FULLY symfony to nodejs
+
+         */
+
+        $getapi_user = $client->request('POST', 'http://localhost/ESHOP_API/public/index.php/api/users/login', [
+
+            'username' => $username,
+            'mdp' => $password
+
+        ]);
+        $userdata = $getapi_user->toArray();
+
 
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,

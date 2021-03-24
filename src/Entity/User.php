@@ -75,24 +75,6 @@ class User implements UserInterface
      */
     private $last_name;
 
-    /**
-     * @ORM\Column(type="boolean")
-     * @Groups("user:read")
-     */
-    private $active;
-
-    /**
-     * @ORM\Column(type="string", length=180, nullable=true)
-     * @Groups("user:read")
-     */
-    private $mail_confirmation;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups("user:read")
-     */
-    private $pass_confirmation;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -239,42 +221,6 @@ class User implements UserInterface
     public function setLastName(string $last_name): self
     {
         $this->last_name = $last_name;
-
-        return $this;
-    }
-
-    public function getActive(): ?bool
-    {
-        return $this->active;
-    }
-
-    public function setActive(bool $active): self
-    {
-        $this->active = $active;
-
-        return $this;
-    }
-
-    public function getMailConfirmation(): ?string
-    {
-        return $this->mail_confirmation;
-    }
-
-    public function setMailConfirmation(?string $mail_confirmation): self
-    {
-        $this->mail_confirmation = $mail_confirmation;
-
-        return $this;
-    }
-
-    public function getPassConfirmation(): ?string
-    {
-        return $this->pass_confirmation;
-    }
-
-    public function setPassConfirmation(?string $pass_confirmation): self
-    {
-        $this->pass_confirmation = $pass_confirmation;
 
         return $this;
     }
