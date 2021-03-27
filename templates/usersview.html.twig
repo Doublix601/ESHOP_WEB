@@ -91,7 +91,7 @@
                                             <td>{{ user.first_name}} {{ user.last_name}}</td>
                                             <td>{{ user.email}}</td>
                                             <td>{{ user.roles.0}}</td>
-                                            <td><a class="btn btn-primary" role="button" style="background: #e14b4b;border-width: 0;" href="http://localhost/ESHOP_API/public/api/user/delete/id/{{ user.id }}">Supprimer</a></td>
+                                            <td><a class="btn btn-primary" role="button" style="background: #e14b4b;border-width: 0;" href="http://localhost:8001/api/users/delete/{{ user.id }}">Supprimer</a></td>
                                         </tr>
 
                                     {% endfor %}

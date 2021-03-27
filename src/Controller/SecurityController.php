@@ -3,16 +3,18 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class SecurityController extends AbstractController
 {
     /**
      * @Route("/login", name="app_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils, HttpClientInterface $client, Request $request): Response
     {
         //Test langage
         $langage = "FR";
@@ -33,7 +35,8 @@ class SecurityController extends AbstractController
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
+        //$lastUsername = $authenticationUtils->getLastUsername();
+
 
 
         //todo
@@ -64,17 +67,22 @@ class SecurityController extends AbstractController
 
          */
 
-        $getapi_user = $client->request('POST', 'http://localhost/ESHOP_API/public/index.php/api/users/login', [
+        if($request->request->get('email') !== null){
+            $getapi_user = $client->request('POST', 'http://localhost:8001/api/users/login', [
+                'json' => [
+                    'email' => $request->request->get('email'),
+                    'password' => $request->request->get('password'),
+                ]
+            ]);
 
-            'username' => $username,
-            'mdp' => $password
+            $userdata = $getapi_user->toArray();
 
-        ]);
-        $userdata = $getapi_user->toArray();
+            dd($userdata);
+        }
 
 
         return $this->render('security/login.html.twig', [
-            'last_username' => $lastUsername,
+            //'last_username' => $lastUsername,
             'error' => $error,
 
             //nav
