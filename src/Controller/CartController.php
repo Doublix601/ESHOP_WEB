@@ -31,7 +31,7 @@ class CartController extends AbstractController
         $panierWithData = [];
 
         foreach ($panier as $id => $quantity){
-            if ($id !== 1){
+            if ($id !== 0){
                 $id--;
             }
 
