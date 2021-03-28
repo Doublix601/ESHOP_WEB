@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class AccountController extends AbstractController
@@ -23,14 +24,16 @@ class AccountController extends AbstractController
     /**
      * @Route("/account", name="account")
      */
-    public function index(HttpClientInterface $client): Response
+    public function index(HttpClientInterface $client, UserInterface $user): Response
     {
         //Get user data
         //$userdata = $this->get('security.token_storage')->getToken()->getUser();
         //$userdata->getId();
         //dd($userdata);
 
-        $getapi_user = $client->request('GET', 'http://localhost/ESHOP_API/public/index.php/api/users/21');
+        $userId = $user->getId();
+
+        $getapi_user = $client->request('GET', 'http://localhost/ESHOP_API/public/index.php/api/users/'.$userId);
         $userdata = $getapi_user->toArray();
 
         //Test langage

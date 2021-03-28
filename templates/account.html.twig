@@ -25,7 +25,6 @@
                         <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('cart') }}"><i class="fas fa-shopping-bag" style="font-size: 22px;"></i></a></li>
                         <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('account') }}"><i class="fa fa-user" style="font-size: 22px;"></i></a></li>
                         <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="logout"><i class="fas fa-power-off" style="font-size: 22px;"></i></a></li>
-
                     </ul>
                 </div>
             </div>
@@ -38,7 +37,7 @@
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('cart') }}"><i class="fas fa-shopping-bag" style="font-size: 22px;"></i></a></li>
-                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('account') }}"><i class="fas fa-user-plus" style="font-size: 22px;"></i></a></li>
+                        <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('app_login') }}"><i class="fas fa-user-plus" style="font-size: 22px;"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -46,19 +45,6 @@
         {# Navigation - END #}
     {% endif %}
 
-    <br>Debug navbar<br>
-    <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color: #e14b4b;">
-        <div class="container"><a class="navbar-brand" href="{{ path('homepage') }}"><img src="/assets/img/site/logo_flat.png" style="width: 100px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="{{ path('usersview') }}">Gestion des utilisateurs</a></li>
-                    <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('cart') }}"><i class="fas fa-shopping-bag" style="font-size: 22px;"></i></a></li>
-                    <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="{{ path('account') }}"><i class="fa fa-user" style="font-size: 22px;"></i></a></li>
-                    <li class="nav-item text-center" style="text-align: center;height: 47px;"><a class="nav-link" href="logout"><i class="fas fa-power-off" style="font-size: 22px;"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
     {# Body - BEGIN #}
     <body id="page-top">
@@ -79,7 +65,7 @@
                                             <h3 style="padding-top: 15px;padding-left: 5px;">Identifiants</h3>
                                             <div class="form-row" style="margin-bottom: 50px;margin-left: 5px;margin-right: 5px;border-width: 1px;border-style: none;">
                                                 <div class="col" style="border-style: none;">
-                                                    <div class="form-group"><label for="email"><strong>Adresse mail</strong></label><input class="form-control" type="email" placeholder="user@example.com" value="{{ userdata.email }}" name="email"></div>
+                                                    <div class="form-group"><label for="email"><strong>Adresse mail</strong></label><input class="form-control" type="email" placeholder="user@example.com" value="{{ userdata.0.email }}" name="email"></div>
                                                 </div>
                                                 <div class="col" style="border-style: none;">
                                                     <div class="form-group"><label for="email"><strong>Changer mon mot de passe</strong></label><input class="form-control" type="email" name="Change password" placeholder="********"><label for="email" style="margin-top: 10px;"><strong>Confirmez votre nouveau mot de passe</strong></label><input class="form-control" type="email" name="Change password" placeholder="********"></div>
@@ -91,10 +77,10 @@
                                             <h3 style="padding-left: 5px;">Mes informations</h3>
                                             <div class="form-row" style="border-width: 1px;border-style: none;padding-right: 5px;padding-left: 5px;margin-left: 5px;margin-right: 5px;">
                                                 <div class="col" style="border-style: none;">
-                                                    <div class="form-group"><label for="first_name"><strong>Prénom</strong></label><input class="form-control" type="text" placeholder="Prénom" value="{{ userdata.first_name }}" name="first_name"></div>
+                                                    <div class="form-group"><label for="first_name"><strong>Prénom</strong></label><input class="form-control" type="text" placeholder="Prénom" value="{{ userdata.0.first_name }}" name="first_name"></div>
                                                 </div>
                                                 <div class="col">
-                                                    <div class="form-group"><label for="last_name"><strong>Nom</strong><br></label><input class="form-control" type="text" placeholder="Nom" value="{{ userdata.last_name }}" name="last_name"></div>
+                                                    <div class="form-group"><label for="last_name"><strong>Nom</strong><br></label><input class="form-control" type="text" placeholder="Nom" value="{{ userdata.0.last_name }}" name="last_name"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -103,18 +89,18 @@
                                             <h3 style="padding-left: 5px;">Mon domicile</h3>
                                             <div class="form-row" style="margin-right: 0px;margin-left: 0px;padding-left: 5px;padding-right: 5px;">
                                                 <div class="col">
-                                                    <div class="form-group" style="border-width: 1px;border-style: none;"><label for="address"><strong>Address</strong></label><input class="form-control" type="text" placeholder="Sunset Blvd, 38" name="address"></div>
+                                                    <div class="form-group" style="border-width: 1px;border-style: none;"><label for="address"><strong>Address</strong></label><input class="form-control" type="text" placeholder="11 bis rue Saint Jean" name="address" value="{{ userdata.0.adress }}"></div>
                                                 </div>
                                             </div>
                                             <div class="form-row" style="margin-top: 30px;border-width: 1px;border-style: none;margin-left: 0px;margin-right: 0px;padding-left: 5px;padding-right: 5px;">
                                                 <div class="col">
-                                                    <div class="form-group"><label for="country"><strong>Code postal</strong></label><input class="form-control" type="text" placeholder="60200" name="country"></div>
+                                                    <div class="form-group"><label for="country"><strong>Code postal</strong></label><input class="form-control" type="text" placeholder="60200" name="country" value="{{ userdata.0.cp }}"></div>
                                                 </div>
                                                 <div class="col">
-                                                    <div class="form-group"><label for="city"><strong>Ville</strong></label><input class="form-control" type="text" placeholder="Compiègne" name="city"></div>
+                                                    <div class="form-group"><label for="city"><strong>Ville</strong></label><input class="form-control" type="text" placeholder="Ville" name="city" value="{{ userdata.0.city }}"></div>
                                                 </div>
                                                 <div class="col">
-                                                    <div class="form-group"><label for="country"><strong>Pays</strong><br></label><input class="form-control" type="text" placeholder="France" name="country"></div>
+                                                    <div class="form-group"><label for="country"><strong>Pays</strong><br></label><input class="form-control" type="text" placeholder="France" name="country" value="{{ userdata.0.country }}"></div>
                                                 </div>
                                             </div>
                                         </div>
