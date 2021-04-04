@@ -65,7 +65,7 @@
                                         <th>Nom</th>
                                         <th>E-mail</th>
                                         <th>Rôle</th>
-                                        <th>Supprimer l'utilisateur</th>
+                                        <th>Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -77,7 +77,7 @@
                                             <td>{{ user.first_name}} {{ user.last_name}}</td>
                                             <td>{{ user.email}}</td>
                                             <td>{{ user.roles.0}}</td>
-                                            <td><a class="btn btn-primary" role="button" style="background: #e14b4b;border-width: 0;" href="http://localhost:8001/api/users/delete/{{ user.id }}">Supprimer</a></td>
+                                            <td><a class="btn btn-primary" role="button" style="margin-right:5px; background: #F1B426;border-width: 0;" href="{{ path('account_byid', {id: user.id}) }}">Modifier</a><a class="btn btn-primary" role="button" style="margin-left: 5px; background: #e14b4b;border-width: 0;" href="http://localhost:8001/api/users/delete/{{ user.id }}">Supprimer</a></td>
                                         </tr>
 
                                     {% endfor %}

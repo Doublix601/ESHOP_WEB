@@ -22,27 +22,13 @@ class HomeController extends AbstractController
         if ($langage == "FR") {
             $meilleures_ventes = "Meilleures ventes"; //Titre meilleures ventes FR
             $nouveaux_articles = "Derniers ajouts"; //Titre articles mis en avant FR
-            //nav
-            $nav_categorie = "Catégories";
-            $nav_la_marque = "La marque";
-                $nav_qsn = "Qui sommes-nous ?";
-                $nav_no = "Nos origines";
-            $nav_contact = "Contact";
-            $nav_liste_envie = "Ma liste d'envie";
-            $nav_panier = "Mon panier";
-            $nav_mon_compte = "Mon compte";
         }
 
-        $getapi_products = $client->request('GET', 'http://localhost/ESHOP_API/public/index.php/api/products/get');
+        $getapi_products = $client->request('GET', 'http://localhost:8001/api/products/get');
         $produits = $getapi_products->toArray();
 
 
         return $this->render('base.html.twig', [
-            //nav
-            "nav_contact" => $nav_contact,
-            "nav_liste_envie" => $nav_liste_envie,
-            "nav_panier" => $nav_panier,
-            "nav_mon_compte" => $nav_mon_compte,
 
             //Produits
             "produits" => $produits,

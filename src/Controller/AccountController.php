@@ -24,53 +24,40 @@ class AccountController extends AbstractController
     /**
      * @Route("/account", name="account")
      */
-    public function index(HttpClientInterface $client, UserInterface $user): Response
+    public function account(HttpClientInterface $client, UserInterface $user): Response
     {
-        //Get user data
-        //$userdata = $this->get('security.token_storage')->getToken()->getUser();
-        //$userdata->getId();
-        //dd($userdata);
-
         $userId = $user->getId();
 
         $getapi_user = $client->request('GET', 'http://localhost/ESHOP_API/public/index.php/api/users/'.$userId);
         $userdata = $getapi_user->toArray();
 
-        //Test langage
-        $langage = "FR";
-
-        if ($langage == "FR") {
-            //nav
-            $nav_categorie = "Catégories";
-            $nav_la_marque = "La marque";
-            $nav_qsn = "Qui sommes-nous ?";
-            $nav_no = "Nos origines";
-            $nav_contact = "Contact";
-            $nav_liste_envie = "Ma liste d'envie";
-            $nav_panier = "Mon panier";
-            $nav_mon_compte = "Mon compte";
-        }
-
-        //Vérification si utilisateur connecté
-        //$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
-        //a verifier
-        //$user = $this->getUser();
-
         return $this->render('account.html.twig', [
-
-            //nav
-            "nav_categories" => $nav_categorie,
-            "nav_la_marque" => $nav_la_marque,
-            "nav_qsn" => $nav_qsn,
-            "nav_no" => $nav_no,
-            "nav_contact" => $nav_contact,
-            "nav_liste_envie" => $nav_liste_envie,
-            "nav_panier" => $nav_panier,
-            "nav_mon_compte" => $nav_mon_compte,
-
             //User Data
             "userdata" => $userdata,
             ]);
+    }
+
+    /**
+     * @Route("/account/{id}", name="account_byid")
+     */
+    public function accountbyid(HttpClientInterface $client, UserInterface $user, $id): Response
+    {
+        if ($this->security->isGranted('ROLE_ADMIN')) {
+
+            $getapi_user = $client->request('GET', 'http://localhost/ESHOP_API/public/index.php/api/users/'.$id);
+            $userdata = $getapi_user->toArray();
+
+            return $this->render('account.html.twig', [
+                //User Data
+                "userdata" => $userdata,
+            ]);
+        }else{
+            $error = false;
+            return $this->render('security/login.html.twig', [
+                'error' => $error
+            ]);
+        }
+
+
     }
 }
