@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}DRESS UP.CO - {{ produit.0.brand }} - {{ produit.0.label }}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block body %}
     {% if is_granted('ROLE_ADMIN') %}
@@ -47,50 +47,46 @@
         {# Navigation - END #}
     {% endif %}
 
-
-    {# Body - BEGIN #}
-    <div>
-        <div class="container" style="width: 650px;">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="text-center" style="margin-top: 50px;"><img src="{{ produit.0.img }}" style="width: 400px;margin-top: -5%;">
-                        <h2 style="margin-top: 20px;">{{ produit.0.label }} - {{ produit.0.brand }}</h2>
-                        <h5 class="text-center">{{ produit.0.ttc_price }}€</h5>
-
-                        {% if produit.0.stock == 0 %}
-                            <div class="row">
-                                <div class="col text-center">
-                                    <h6 class="text-center">Rupture de stock</h6>
-                                </div>
-                            </div>
-                        {% else %}
-                                <div class="row">
-                                    <div class="col text-center">
-                                        <h6 class="text-center">{{ produit.0.stock }}{{ stock }}</h6>
-                                    </div>
-                                </div>
-                        {% endif %}
-
-
-                        <div class="row" style="margin-top: 8px;">
-                            <div class="col text-center">
-                                <a class="btn btn-primary" role="button" style="background: #e14b4b;border-width: 0;" href="{{ path('cart_add', {'id': produit.0.id}) }}">{{ bouton_panier }}</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div style="text-align: center">
+        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center; margin-top: 35px">{{ title }}</h1>
+        {{ form_start(EditProductForm) }}
+        <div>
+            {{ form_label(EditProductForm.label) }}
+            <br>
+            {{ form_widget(EditProductForm.label) }}
+        </div><br>
+        <div>
+            {{ form_label(EditProductForm.brand) }}
+            <br>
+            {{ form_widget(EditProductForm.brand) }}
+        </div><br>
+        <div>
+            {{ form_label(EditProductForm.ht_price) }}
+            <br>
+            {{ form_widget(EditProductForm.ht_price) }}
+        </div><br>
+        <div>
+            {{ form_label(EditProductForm.tva) }}
+            <br>
+            {{ form_widget(EditProductForm.tva) }}
+        </div><br>
+        <div>
+            {{ form_label(EditProductForm.stock) }}
+            <br>
+            {{ form_widget(EditProductForm.stock) }}
+        </div><br>
+        <div>
+            {{ form_label(EditProductForm.description) }}
+            <br>
+            {{ form_widget(EditProductForm.description) }}
+        </div><br>
+        <div>
+            {{ form_label(EditProductForm.description_courte) }}
+            <br>
+            {{ form_widget(EditProductForm.description_courte) }}
+        </div><br>
+        <br>
+        <button class="btn btn-lg btn-primary" type="submit" style="background-color: #e14b4b;border-width: 0px">Modifier</button>
+        {{ form_end(EditProductForm) }}
     </div>
-    <div style="margin-top: 25px;">
-        <div class="container" style="width: 800px;border-width: 1px;border-style: solid;">
-            <div class="row">
-                <div class="col-md-12">
-                    <h4 style="margin-top: 8px;">{{ description_titre }}</h4>
-                    <p class="text-left">{{ produit.0.description }}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    {# Body - END #}
 {% endblock %}

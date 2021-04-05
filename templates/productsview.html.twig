@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}DRESS UP.CO - {{ produit.0.brand }} - {{ produit.0.label }}{% endblock %}
+{% block title %}DRESS UP.CO - Produits{% endblock %}
 
 {% block body %}
     {% if is_granted('ROLE_ADMIN') %}
@@ -49,45 +49,47 @@
 
 
     {# Body - BEGIN #}
-    <div>
-        <div class="container" style="width: 650px;">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="text-center" style="margin-top: 50px;"><img src="{{ produit.0.img }}" style="width: 400px;margin-top: -5%;">
-                        <h2 style="margin-top: 20px;">{{ produit.0.label }} - {{ produit.0.brand }}</h2>
-                        <h5 class="text-center">{{ produit.0.ttc_price }}€</h5>
+    <div id="wrapper" style="margin-top: 50px">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <div class="container-fluid">
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <h4 style="color: #e14b4b;">Produits</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                <table class="table my-0" id="users">
+                                    <thead>
+                                    <tr>
+                                        <th>Produit</th>
+                                        <th>Marque</th>
+                                        <th>Prix</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
 
-                        {% if produit.0.stock == 0 %}
-                            <div class="row">
-                                <div class="col text-center">
-                                    <h6 class="text-center">Rupture de stock</h6>
-                                </div>
-                            </div>
-                        {% else %}
-                                <div class="row">
-                                    <div class="col text-center">
-                                        <h6 class="text-center">{{ produit.0.stock }}{{ stock }}</h6>
-                                    </div>
-                                </div>
-                        {% endif %}
 
+                                    {% for product in products|sort((a, b) => a.id < b.id) %}
 
-                        <div class="row" style="margin-top: 8px;">
-                            <div class="col text-center">
-                                <a class="btn btn-primary" role="button" style="background: #e14b4b;border-width: 0;" href="{{ path('cart_add', {'id': produit.0.id}) }}">{{ bouton_panier }}</a>
+                                        <tr id="{{ product.id }}">
+                                            <td>{{ product.label}}</td>
+                                            <td>{{ product.brand}}</td>
+                                            <td>{{ product.ttc_price}}€</td>
+                                            <td><a class="btn btn-primary" role="button" style="margin-right:5px; background: #F1B426;border-width: 0;" href="{{ path('edit_product', {id: product.id}) }}">Modifier</a><a class="btn btn-primary" role="button" style="margin-left: 5px; background: #e14b4b;border-width: 0;" href="http://localhost:8001/api/products/delete/{{ product.id }}">Supprimer</a></td>
+                                        </tr>
+
+                                    {% endfor %}
+
+                                    </tbody>
+                                    <tfoot>
+                                    <tr></tr>
+                                    </tfoot>
+                                </table>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div style="margin-top: 25px;">
-        <div class="container" style="width: 800px;border-width: 1px;border-style: solid;">
-            <div class="row">
-                <div class="col-md-12">
-                    <h4 style="margin-top: 8px;">{{ description_titre }}</h4>
-                    <p class="text-left">{{ produit.0.description }}</p>
                 </div>
             </div>
         </div>
