@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\EditProductFormType;
+use App\Form\ProductFormType;
 use App\Form\RegistrationFormType;
 use App\Security\LoginFormAuthentificationAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,8 +26,9 @@ class AddProductController extends AbstractController
     public function register(Request $request, HttpClientInterface $client): Response
     {
         $title = "Ajouter un produit";
+        $button = "Ajouter";
 
-        $form = $this->createForm(EditProductFormType::class);
+        $form = $this->createForm(ProductFormType::class);
 
         $form->handleRequest($request);
 
@@ -52,9 +53,10 @@ class AddProductController extends AbstractController
             ]);
         }
 
-        return $this->render('editproduct.html.twig', [
-            'EditProductForm' => $form->createView(),
+        return $this->render('AddOrEditProduct.html.twig', [
+            'ProductForm' => $form->createView(),
             'title' => $title,
+            'button' => $button,
         ]);
     }
 }

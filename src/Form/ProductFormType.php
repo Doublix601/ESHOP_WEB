@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 
 
-class EditProductFormType extends AbstractType
+class ProductFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

@@ -25,17 +25,22 @@ class CartController extends AbstractController
         $produits = $getapi_products->toArray();
 
 
+        //$id_column = $produits[$id_column]['id'];
+
         $panier = $session->get('cart', []);
 
 
         $panierWithData = [];
 
+
         foreach ($panier as $id => $quantity){
+            $id_column = array_search($id, array_column($produits, 'id'));
             if ($id !== 0){
                 $id--;
             }
 
-            $panier_item = array($id => $produits[$id]);
+            $panier_item = array($id => $produits[$id_column]);
+
 
             $panierWithData[] = [
                 'product' => $panier_item[$id],
@@ -69,7 +74,6 @@ class CartController extends AbstractController
 
             "items" => $panierWithData,
             "total" => $total
-
         ]);
     }
 
@@ -92,6 +96,16 @@ class CartController extends AbstractController
         $cartService->remove($id);
 
         return $this->redirectToRoute("cart");
+    }
+
+    /**
+     * @Route("/cart/remove", name="cart_flush")
+     */
+    public function flushCart(CartService $cartService){
+
+        $cartService->flush();
+
+        return $this->redirectToRoute("checkout_success");
     }
 
 }

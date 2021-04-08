@@ -36,6 +36,12 @@ class CartService
         $this->session->set('cart', $panier);
     }
 
+    public function flush(){
+        $panier = $this->session->get('cart', []);
+
+        $this->session->set('cart', array());
+    }
+
     //public function getFullCart() : array {}
 
     //public function getTotal() : float {}
